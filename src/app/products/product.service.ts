@@ -1,13 +1,41 @@
 import { Injectable } from "@angular/core";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { Observable, throwError } from "rxjs";
+import { catchError, tap } from "rxjs/operators";
+
 import { ProductDTO } from "./product";
 
 @Injectable({
   providedIn : 'root'
 })
 export class ProductService {
-  constructor() {}
+  
+  private productUrl ='https://stackblitz.com/edit/angular-srikanthrachala?file=src%2Fapi%2Fproducts%2Fproducts.json';
 
-  getProducts(): ProductDTO[] {
+  constructor(private http : HttpClient) {}
+
+  getProducts(): Observable<ProductDTO[]> {
+
+    return this.http.get<ProductDTO[]>(this.productUrl).pipe(
+                tap(data => console.log('All: '+JSON.stringify(data))),
+                catchError(this.handleError)
+    );
+  }
+
+  private handleError(err: HttpErrorResponse) {
+    let errorMessage = '';
+    if (err.error instanceof ErrorEvent) {
+      errorMessage = `An error occured: ${err.error.message}`;
+    } else {
+      errorMessage = `Server returned code: ${err.status}, error message is : ${err.message}`;
+    }
+
+    console.error(errorMessage);
+    return throwError(errorMessage);
+  }
+
+
+  getProductsMock(): ProductDTO[] {
     return [
       {
         productId: 1,
