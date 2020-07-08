@@ -51,6 +51,10 @@ export class ProductListComponent implements OnInit {
 
   }
 
+  onRatingClicked(message: string): void {
+    this.pageTitle = "Product List "+message;
+  }
+
 
   performFilter(filterBy: string): ProductDTO[] {
     filterBy = filterBy.toLocaleLowerCase();
