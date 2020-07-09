@@ -4,7 +4,6 @@ import { ProductDTO } from './product';
 import { ProductService } from './product.service';
 
 @Component({
-  selector: 'pm-products',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
@@ -46,13 +45,18 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      //this.products = this.productService.getProductsMock();
-      this.productService.getProducts().subscribe({
+      this.products = this.productService.getProductsMock();
+      this.filteredProducts = this.products;
+  }
+
+    /* uncomment when http api url is used
+    ngOnInit(): void {
+       this.productService.getProducts().subscribe({
         next: products => {
           this.products = products;
           this.filteredProducts = this.products;
           },
         error: err => this.errorMessage = err
       });
-  }
+  } */
 }

@@ -10,7 +10,7 @@ import { ProductDTO } from "./product";
 })
 export class ProductService {
   
-  private productUrl ='https://stackblitz.com/edit/angular-srikanthrachala?file=src%2Fapi%2Fproducts%2Fproducts.json';
+  private productUrl ='api/products/products.json';
 
   constructor(private http : HttpClient) {}
 
