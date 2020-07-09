@@ -44,12 +44,11 @@ export class ProductListComponent implements OnInit {
     this.showImage = !this.showImage;
   }
 
-  ngOnInit(): void {
-      this.products = this.productService.getProductsMock();
-      this.filteredProducts = this.products;
-  }
+  // ngOnInit(): void {
+  //     this.products = this.productService.getProductsMock();
+  //     this.filteredProducts = this.products;
+  // }
 
-    /* uncomment when http api url is used
     ngOnInit(): void {
        this.productService.getProducts().subscribe({
         next: products => {
@@ -58,5 +57,5 @@ export class ProductListComponent implements OnInit {
           },
         error: err => this.errorMessage = err
       });
-  } */
+  } 
 }
